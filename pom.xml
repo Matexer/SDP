@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>main</groupId>
     <artifactId>SDP</artifactId>
-    <version>1.0</version>
+    <version>0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,14 +18,19 @@
             <version>1.4.199</version>
         </dependency>
         <dependency>
+            <groupId>com.j256.ormlite</groupId>
+            <artifactId>ormlite-jdbc</artifactId>
+            <version>5.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>15</version>
+            <version>16</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>15</version>
+            <version>16</version>
         </dependency>
     </dependencies>
 

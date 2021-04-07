@@ -1,28 +1,48 @@
 package main;
 
+import database.utils.DBManager;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import java.sql.*;
+
+import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class Main extends Application {
 
+    private String appTitle;
+    private ResourceBundle bundle;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
-    public void start(Stage stage) {
-        var scene = new Scene(new StackPane(), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void init() {
+        bundle = ResourceBundle.getBundle("bundles.labels");
+        appTitle = bundle.getString("application.name") + " v" + bundle.getString("application.version");
+        DBManager.init();
     }
 
-    public static void main(String[] args) throws SQLException {
-        runDB();
-        launch();
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/Main.fxml"));
+        loader.setResources(bundle);
+        TabPane tabPane = loader.load();
+        Group root = new Group(tabPane);
+        Scene scene = new Scene(root);
+        primaryStage.setTitle(appTitle);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
-    static void runDB() throws SQLException {
-        java.sql.Connection connection = DriverManager.getConnection("jdbc:h2:./test_db", "sa", "");
+    @Override
+    public void stop() {
+        DBManager.close();
     }
+
 }

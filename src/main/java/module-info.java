@@ -3,4 +3,6 @@ module main {
     requires javafx.fxml;
     requires java.sql;
     exports main;
+    exports controllers;
+    exports database.utils;
 }
