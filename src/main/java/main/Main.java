@@ -33,8 +33,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/Main.fxml"));
         loader.setResources(bundle);
         TabPane tabPane = loader.load();
-        Group root = new Group(tabPane);
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(tabPane);
         primaryStage.setTitle(appTitle);
         primaryStage.setScene(scene);
         primaryStage.show();
