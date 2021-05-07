@@ -35,6 +35,9 @@ public class AddVehicleController {
     private DatePicker techReviewDate;
 
     @FXML
+    private TextField registrationNumField;
+
+    @FXML
     private Button cancelBtn;
 
     @FXML

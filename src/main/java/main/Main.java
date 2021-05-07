@@ -3,7 +3,6 @@ package main;
 import database.utils.DBManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
@@ -25,7 +24,8 @@ public class Main extends Application {
     public void init() {
         bundle = ResourceBundle.getBundle("bundles.labels");
         appTitle = bundle.getString("application.name") + " v" + bundle.getString("application.version");
-        DBManager.init();
+        DBManager.createConnection("jdbc:h2:./database");
+        DBManager.createTablesIfNotExist();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        DBManager.close();
+        DBManager.closeConnection();
     }
 
 }
