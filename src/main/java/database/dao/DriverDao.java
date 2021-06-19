@@ -1,4 +1,10 @@
 package database.dao;
 
-public class DriverDao extends BaseDao {
+import database.models.BaseModel;
+
+public class DriverDao implements BaseDao {
+    @Override
+    public void add(BaseModel obj) {
+
+    }
 }

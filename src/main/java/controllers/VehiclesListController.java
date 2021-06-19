@@ -2,12 +2,14 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
-public class VehiclesListController {
+
+public class VehiclesListController extends Controller{
+
+    @FXML
+    private VBox vehiclesListVBox;
 
     @FXML
     private TextField nameField;
@@ -35,7 +37,7 @@ public class VehiclesListController {
 
     @FXML
     void add(ActionEvent event) {
-
+        mainController.changePane(addVehicleFXMLPath, vehiclesListVBox);
     }
 
     @FXML

@@ -1,4 +1,8 @@
 package database.dao;
 
-public class BaseDao {
+import database.models.BaseModel;
+
+public interface BaseDao {
+    void add(BaseModel obj);
+
 }
