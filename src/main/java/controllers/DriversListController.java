@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
-public class DriversListController {
+public class DriversListController extends Controller{
 
     @FXML
     private Label firstNameField;
@@ -36,7 +36,7 @@ public class DriversListController {
 
     @FXML
     void add(ActionEvent event) {
-
+        showAddDriverWindow();
     }
 
     @FXML

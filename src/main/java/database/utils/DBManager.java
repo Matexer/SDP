@@ -1,5 +1,6 @@
 package database.utils;
 
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.logger.LoggerFactory;
@@ -50,4 +51,5 @@ public abstract class DBManager {
             }
         }
     }
+
 }

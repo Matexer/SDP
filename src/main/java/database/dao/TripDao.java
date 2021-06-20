@@ -1,10 +1,8 @@
 package database.dao;
 
-import database.models.BaseModel;
+public class TripDao extends CommonDao {
 
-public class TripDao implements BaseDao {
-    @Override
-    public void add(BaseModel obj) {
-
+    public TripDao() {
+        super();
     }
 }

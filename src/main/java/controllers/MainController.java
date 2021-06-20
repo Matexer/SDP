@@ -18,11 +18,6 @@ public class MainController {
         vehiclesListController.setMainController(this);
     }
 
-    public void changePane(String fxmlPAth, VBox parent){
-        parent.getChildren().clear();
-        parent.getChildren().add(loadElement(fxmlPAth));
-    }
-
     private Parent loadElement(String fxmlPAth) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.labels");
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxmlPAth));

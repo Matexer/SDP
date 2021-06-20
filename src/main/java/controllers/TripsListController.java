@@ -8,7 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 
-public class TripsListController {
+public class TripsListController extends Controller{
 
     @FXML
     private TextField fromField;
@@ -48,7 +48,7 @@ public class TripsListController {
 
     @FXML
     void add(ActionEvent event) {
-
+        showAddTripWindow();
     }
 
     @FXML

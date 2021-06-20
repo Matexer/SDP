@@ -1,10 +1,8 @@
 package database.dao;
 
-import database.models.BaseModel;
+public class DriverDao extends CommonDao {
 
-public class DriverDao implements BaseDao {
-    @Override
-    public void add(BaseModel obj) {
-
+    public DriverDao() {
+        super();
     }
 }

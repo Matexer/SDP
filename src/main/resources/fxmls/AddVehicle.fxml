@@ -46,9 +46,9 @@
                         <Label text="%label.type" GridPane.rowIndex="2" />
                         <Label text="%label.licenseCategory" GridPane.rowIndex="3" />
                         <ComboBox fx:id="typeCbox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="licenseCbox" prefHeight="24.0" prefWidth="34.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="licenseCbox" prefHeight="24.0" prefWidth="96.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label text="%label.passengersAmount" GridPane.rowIndex="4" />
-                        <TextField fx:id="passCbox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="41.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="passNum" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="41.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="%label.insuranceTo" GridPane.rowIndex="5" />
                         <Label text="%label.technicalReviewTo" GridPane.rowIndex="6" />
                         <DatePicker fx:id="insuranceDate" GridPane.columnIndex="1" GridPane.rowIndex="5" />

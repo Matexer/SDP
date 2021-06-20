@@ -1,5 +1,9 @@
 package controllers;
 
+import database.dao.VehicleDao;
+import database.models.Vehicle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +12,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class AddVehicleController {
+import java.sql.Date;
+
+public class AddVehicleController extends Controller{
 
     @FXML
     private ImageView picture;
@@ -20,13 +26,13 @@ public class AddVehicleController {
     private TextField nameField;
 
     @FXML
-    private ComboBox<?> typeCbox;
+    private ComboBox<String> typeCbox;
 
     @FXML
-    private ComboBox<?> licenseCbox;
+    private ComboBox<String> licenseCbox;
 
     @FXML
-    private TextField passCbox;
+    private TextField passNum;
 
     @FXML
     private DatePicker insuranceDate;
@@ -50,12 +56,32 @@ public class AddVehicleController {
 
     @FXML
     void save(ActionEvent event) {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setName(nameField.getCharacters().toString());
+        vehicle.setVehicleType(typeCbox.getValue());
+        vehicle.setRegistrationNumber(registrationNumField.getCharacters().toString());
+        vehicle.setRequiredDriveLicense(licenseCbox.getValue());
+        vehicle.setPassengersCapacity(Integer.parseInt((passNum.getCharacters().toString())));
+        vehicle.setInsuranceDate(Date.valueOf(insuranceDate.getValue()));
+        vehicle.setTechnicalReviewDate(Date.valueOf(techReviewDate.getValue()));
 
+        VehicleDao vehicleDao = new VehicleDao();
+        try {
+            vehicleDao.createOrUpdate(vehicle);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void setPicture(ActionEvent event) {
 
+    }
+
+    public void initialize() {
+        super.initialize();
+        typeCbox.setItems(vehicleTypes);
+        licenseCbox.setItems(licenseTypes);
     }
 
 }

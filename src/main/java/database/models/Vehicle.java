@@ -4,6 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @DatabaseTable(tableName = "vehicles")
 public class Vehicle implements BaseModel {
@@ -14,14 +15,14 @@ public class Vehicle implements BaseModel {
     @DatabaseField(canBeNull = false)
     private String name;
 
-    @DatabaseField(canBeNull = false, foreign = true)
-    private VehicleType type;
+    @DatabaseField(canBeNull = false)
+    private String vehicleType;
 
     @DatabaseField(canBeNull = false)
     private String registrationNumber;
 
-    @DatabaseField(canBeNull = false, foreign = true)
-    private DriveLicense requiredDriveLicense;
+    @DatabaseField(canBeNull = false)
+    private String requiredDriveLicense;
 
     @DatabaseField(canBeNull = false)
     private int passengersCapacity;
@@ -31,6 +32,14 @@ public class Vehicle implements BaseModel {
 
     @DatabaseField(canBeNull = false)
     private Date technicalReviewDate;
+
+    public String getVehicleType() {
+        return vehicleType;
+    }
+
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
+    }
 
     public int getId() {
         return id;
@@ -48,14 +57,6 @@ public class Vehicle implements BaseModel {
         this.name = name;
     }
 
-    public VehicleType getType() {
-        return type;
-    }
-
-    public void setType(VehicleType type) {
-        this.type = type;
-    }
-
     public String getRegistrationNumber() {
         return registrationNumber;
     }
@@ -64,11 +65,11 @@ public class Vehicle implements BaseModel {
         this.registrationNumber = registrationNumber;
     }
 
-    public DriveLicense getRequiredDriveLicense() {
+    public String getRequiredDriveLicense() {
         return requiredDriveLicense;
     }
 
-    public void setRequiredDriveLicense(DriveLicense requiredDriveLicense) {
+    public void setRequiredDriveLicense(String requiredDriveLicense) {
         this.requiredDriveLicense = requiredDriveLicense;
     }
 
