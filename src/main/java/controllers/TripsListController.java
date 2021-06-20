@@ -21,8 +21,10 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem listy przejazdów.
+ */
 public class TripsListController extends Controller{
 
     List<Vehicle> allVehicles = new ArrayList<>();
@@ -61,12 +63,19 @@ public class TripsListController extends Controller{
     @FXML
     private Button removeBtn;
 
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     public void initialize() {
         allDrivers = loadAllDrivers();
         allVehicles = loadAllVehicles();
         setCboxes();
     }
 
+    /**
+     * Metoda odpowiedzialna za wyświetlenie przefiltrowanej listy przejazdów.
+     * @param event -  obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void search(ActionEvent event){
         List<Trip> filteredTrips = loadFilteredTrips();
@@ -77,21 +86,36 @@ public class TripsListController extends Controller{
         showOnList(filteredTrips);
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Dodaj. Wyświetla okno dodawania przejazdu.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void add(ActionEvent event) {
         showAddTripWindow();
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Edytuj.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void edit(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Usuń.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void remove(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda odpowiedzialna za załadowanie treści Comboboxów.
+     */
     private void setCboxes() {
         ObservableList<String> vehicleNames = FXCollections.observableArrayList();
         for (Vehicle vehicle: allVehicles) {
@@ -107,6 +131,10 @@ public class TripsListController extends Controller{
     }
 
 
+    /**
+     * Metoda zwracająca wszystkie pojazdy z bazy danych.
+     * @return List<Vehicle> - lista pojazdów
+     */
     private List<Vehicle> loadAllVehicles() {
         VehicleDao vehicleDao = new VehicleDao();
         try {
@@ -117,6 +145,10 @@ public class TripsListController extends Controller{
         }
     }
 
+    /**
+     * Metoda zwracająca wszystkich kierowców z bazy danych.
+     * @return List<Driver> - lista kierowców
+     */
     private List<Driver> loadAllDrivers() {
         DriverDao driverDao = new DriverDao();
         try {
@@ -128,6 +160,10 @@ public class TripsListController extends Controller{
     }
 
 
+    /**
+     * Metoda zwracająca wszystkie przejazdy z bazy danych.
+     * @return List<Trip> - lista przejazdów
+     */
     private List<Trip> loadAllTrips() {
         TripDao tripDao = new TripDao();
         try {
@@ -138,6 +174,10 @@ public class TripsListController extends Controller{
         }
     }
 
+    /**
+     * Metoda zwracająca przefiltorwane przejazdy.
+     * @return List<Trip> - lista przejazdów
+     */
     private List<Trip> loadFilteredTrips() {
         List<Trip> allTrips = loadAllTrips();
         if (allTrips == null) {
@@ -175,6 +215,17 @@ public class TripsListController extends Controller{
         return filteredTrips;
     }
 
+    /**
+     * Metoda filtrująca przejazd. Uzupełnia listę przejazdów jeżeli przejazd spełnia określone parametry.
+     * @param filteredList - lista przejazdów
+     * @param trip - sprawdzany przejazd
+     * @param from - miejsce wyjazdu
+     * @param to - miejsce docelowe
+     * @param departureDate - data wyjazdu
+     * @param returnDate - data powrotu
+     * @param vehicleName - nazwa pojazdu (Nazwa własna + nr rej.)
+     * @param driverName - nazwa kierowcy (Imię i nazwisko)
+     */
     private void addIfInCategory (List<Trip> filteredList, Trip trip,
                                   String from, String to, Date departureDate,
                                   Date returnDate, String vehicleName,
@@ -213,6 +264,10 @@ public class TripsListController extends Controller{
         filteredList.add(trip);
     }
 
+    /**
+     * Metoda odpowiadająca za pokazanie listy przefiltrowanych przejazdów.
+     * @param trips - lista przejazdów
+     */
     private void showOnList(List<Trip> trips){
         tripsContainer.getChildren().clear();
         for (Trip trip: trips) {

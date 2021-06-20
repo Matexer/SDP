@@ -19,6 +19,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego przejazdu.
+ */
 public class AddTripController extends Controller{
 
     private final List<Vehicle> vehicles = new ArrayList<>();
@@ -59,6 +62,9 @@ public class AddTripController extends Controller{
 
     }
 
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     @FXML
     public void initialize() {
         super.initialize();
@@ -76,6 +82,10 @@ public class AddTripController extends Controller{
 
     }
 
+    /**
+     * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void save(ActionEvent event) {
         Trip trip = new Trip();
@@ -95,6 +105,9 @@ public class AddTripController extends Controller{
         }
     }
 
+    /**
+     * Metoda odpowiedzialna za załadowanie listy wszystkich dostępnych dla przejazdu pojazdów.
+     */
     private void loadAvailableVehicles() {
         VehicleDao vehicleDao = new VehicleDao();
         vehicles.clear();
@@ -132,6 +145,11 @@ public class AddTripController extends Controller{
 
     }
 
+    /**
+     * Metoda odpowiedzialna za dodanie do listy pojazdu jesli spełnia określone kryteria.
+     * @param vehicle - sprawdzany pojazd
+     * @param passengersNum - wymagana minimalna liczba pasażerów
+     */
     private void addVehicleIfPossible(Vehicle vehicle, int passengersNum) {
         if (passengersNum > -1) {
             if (!(vehicle.getPassengersCapacity() >= passengersNum)) {
@@ -141,6 +159,9 @@ public class AddTripController extends Controller{
         vehicles.add(vehicle);
     }
 
+    /**
+     * Metoda odpowiedzialna za załadowanie listy wszystkich dostępnych dla przejazdu kierowców.
+     */
     private void loadAvailableDrivers() {
         DriverDao driverDao = new DriverDao();
         drivers.clear();
@@ -173,6 +194,11 @@ public class AddTripController extends Controller{
 
     }
 
+    /**
+     * Metoda odpowiedzialna za dodanie do listy kierowcy jeśli spełnia określone kryteria.
+     * @param driver - sprawdzany kierowca
+     * @param requiredLicense - wymagana kategoria prawa jazdy
+     */
     private void addDriverIfPossible(Driver driver, String requiredLicense) {
         if (!(driver.getDriveLicenses().contains(requiredLicense))) {
                 return;

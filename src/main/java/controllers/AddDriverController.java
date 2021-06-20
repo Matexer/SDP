@@ -6,16 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego kierowcy.
+ */
 public class AddDriverController extends Controller{
-
-    @FXML
-    private ImageView picture;
-
-    @FXML
-    private Button setPictureBtn;
 
     @FXML
     private TextField firstNameField;
@@ -36,10 +32,19 @@ public class AddDriverController extends Controller{
     private Button saveBtn;
 
     @FXML
+
+    /**
+     * Metoda wykonywana po naciśnięciu przycisku Anuluj.
+     * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     void cancel(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void save(ActionEvent event) {
         Driver driver = new Driver();
@@ -54,11 +59,6 @@ public class AddDriverController extends Controller{
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void setPicture(ActionEvent event) {
-
     }
 
 }

@@ -8,17 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 import java.sql.Date;
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego pojazdu.
+ */
 public class AddVehicleController extends Controller{
-
-    @FXML
-    private ImageView picture;
-
-    @FXML
-    private Button setPictureBtn;
 
     @FXML
     private TextField nameField;
@@ -47,11 +43,19 @@ public class AddVehicleController extends Controller{
     @FXML
     private Button saveBtn;
 
+    /**
+     * Metoda wykonywana po naciśnięciu przycisku Anuluj.
+     * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void cancel(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void save(ActionEvent event) {
         Vehicle vehicle = new Vehicle();
@@ -71,11 +75,9 @@ public class AddVehicleController extends Controller{
         }
     }
 
-    @FXML
-    void setPicture(ActionEvent event) {
-
-    }
-
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     public void initialize() {
         super.initialize();
         typeCbox.setItems(vehicleTypes);

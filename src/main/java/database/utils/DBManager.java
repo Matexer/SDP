@@ -30,8 +30,7 @@ public abstract class DBManager {
     }
 
     public static void createTablesIfNotExist() {
-        Class[] clsList = {Driver.class, Trip.class, Vehicle.class, DriveLicense.class,
-            AdditionalPermission.class};
+        Class[] clsList = {Driver.class, Trip.class, Vehicle.class};
         for (Class tableClass: clsList) {
             try {
                 TableUtils.createTableIfNotExists(connectionSource, tableClass);

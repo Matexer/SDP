@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem listy pojazdów.
+ */
 public class VehiclesListController extends Controller{
 
     List<Vehicle> vehicles = new ArrayList<>();
@@ -46,33 +49,55 @@ public class VehiclesListController extends Controller{
     @FXML
     private Button searchBtn;
 
+    /**
+     * Metoda odpowiedzialna za wyświetlenie przefiltrowanej listy przejazdów.
+     * @param event -obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void search(ActionEvent event) throws IOException {
         loadVehicles();
         loadVisibleList();
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Dodaj. Wyświetla okno dodawania pojazdu.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void add(ActionEvent event) {
         showAddVehicleWindow();
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Edytuj.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void edit(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Usuń.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void remove(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     public void initialize() {
         super.initialize();
         typeCbox.setItems(vehicleTypes);
         licenseCbox.setItems(licenseTypes);
     }
 
+    /**
+     * Metoda odpowiedzialna za pobranie z bazy danych oraz przefiltrowanie lity pojazdów.
+     */
     public void loadVehicles() {
         VehicleDao vehicleDao = new VehicleDao();
         vehicles.clear();
@@ -105,6 +130,14 @@ public class VehiclesListController extends Controller{
         }
     }
 
+    /**
+     * Metoda filtrująca pojazdy. Uzupełnia listę pojazdów jeżeli pojazd ma określone parametry.
+     * @param vehicle - sprawdzany pojazd
+     * @param name - nazwa pojazdu
+     * @param type - typ pojazdu
+     * @param license - wymagana kat. prawa jazdy
+     * @param passengersNum - możliwa liczba pasażerów
+     */
     private void addIfInCategory(Vehicle vehicle, String name, String type,
                                  String license, int passengersNum) {
         if (name.length() > 0) {
@@ -130,12 +163,20 @@ public class VehiclesListController extends Controller{
         vehicles.add(vehicle);
     }
 
-    private void loadVisibleList() throws IOException {
+    /**
+     * Metoda odpowiadająca za pokazanie listy przefiltrowanych pojazdów.
+     */
+    private void loadVisibleList(){
         vehiclesContainer.getChildren().clear();
         for (Vehicle vehicle: vehicles) {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/VehicleListField.fxml"));
             loader.setResources(bundle);
-            GridPane vehicleField = loader.load();
+            GridPane vehicleField = null;
+            try {
+                vehicleField = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             ObservableList<Node> children = vehicleField.getChildren();
             for (Node child : children) {

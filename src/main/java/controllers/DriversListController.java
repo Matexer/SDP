@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem listy kierowców.
+ */
 public class DriversListController extends Controller{
 
     List<Driver> drivers = new ArrayList<>();
@@ -52,32 +55,54 @@ public class DriversListController extends Controller{
     @FXML
     private Button removeBtn;
 
+    /**
+     * Metoda odpowiedzialna za wyświetlenie przefiltorwanej listy kierowców.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
-    void search(ActionEvent event) throws IOException {
+    void search(ActionEvent event){
         loadDrivers();
         loadVisibleList();
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Dodaj. Wyświetla okno dodawania kierowcy.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void add(ActionEvent event) {
         showAddDriverWindow();
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Edytuj.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void edit(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda obsługująca naciśnięcie przycisku Usuń.
+     * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
+     */
     @FXML
     void remove(ActionEvent event) {
 
     }
 
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     public void initialize() {
         super.initialize();
         licenseCbox.setItems(licenseTypes);
     }
 
+    /**
+     * Metoda odpowiedzialna za załadowanie przefiltrowanej listy kierwców.
+     */
     public void loadDrivers() {
         DriverDao driverDao = new DriverDao();
         drivers.clear();
@@ -102,6 +127,14 @@ public class DriversListController extends Controller{
         }
     }
 
+    /**
+     * Metoda odpowiedzialna za dodanie do listy kierowcy jeśli spełnia określone kryteria.
+     * @param driver - sprawdzany obiekt klasy Driver
+     * @param firstName - imię kierowcy
+     * @param lastName - nazwisko kierowcy
+     * @param license - wymagane uprawnienia do kierowania pojazdami
+     * @param addsPerm - wymagane uprawnienia dodatkowe
+     */
     private void addIfInCategory(Driver driver, String firstName,
                                  String lastName, String license, String addsPerm) {
         if (firstName.length() > 0) {
@@ -127,13 +160,22 @@ public class DriversListController extends Controller{
         drivers.add(driver);
     }
 
-    public void loadVisibleList() throws IOException {
+    /**
+     * Metoda odpowiedzialna za wyświetlenie listy przefiltrowanych kierowców.
+     */
+    public void loadVisibleList(){
         driversContainer.getChildren().clear();
         for (Driver driver: drivers) {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/DriverListField.fxml"));
             loader.setResources(bundle);
-            GridPane driverField = loader.load();
+            GridPane driverField = null;
+            try {
+                driverField = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            assert driverField != null;
             ObservableList<Node> children = driverField.getChildren();
 
             for (Node child : children) {
