@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 
+/**
+ * Główna klasa programu. Służy do wygenerowania GUI oraz aktywacji kontrolerów.
+ */
 public class Main extends Application {
 
     private String appTitle;
@@ -20,6 +23,9 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
+     */
     @Override
     public void init() {
         bundle = ResourceBundle.getBundle("bundles.labels");
@@ -28,6 +34,11 @@ public class Main extends Application {
         DBManager.createTablesIfNotExist();
     }
 
+    /**
+     * Metoda odpowiedzialna za załadownie plików FXML
+     * @param primaryStage - wygenerowany przez klasę obiekt root dla elementów GUI
+     * @throws IOException - wyjątek zwracany w przypadku niemożliwości załadowania pliku FXML
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/Main.fxml"));
@@ -39,6 +50,9 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Meotda wywoływana po zamknięciu GUI. W tym przypadku odpowiada za upenienie się o zamknięciu połączenia z bazą danych.
+     */
     @Override
     public void stop() {
         DBManager.closeConnection();
