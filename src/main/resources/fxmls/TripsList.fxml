@@ -15,14 +15,13 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TripsListController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" VBox.vgrow="ALWAYS">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="90.0" prefWidth="766.0" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints minWidth="10.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="244.0" />
+            <ColumnConstraints maxWidth="107.0" minWidth="0.0" prefWidth="101.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="235.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="74.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" />
@@ -40,15 +39,15 @@
                   <Insets left="10.0" right="5.0" />
                </padding>
             </Label>
-            <TextField fx:id="fromField" GridPane.columnIndex="1" />
+            <TextField fx:id="fromField" prefHeight="24.0" prefWidth="188.0" GridPane.columnIndex="1" />
             <TextField fx:id="toField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="%label.date.departure" wrapText="true" GridPane.columnIndex="2">
+            <Label prefWidth="77.0" text="%label.date.departure" wrapText="true" GridPane.columnIndex="2">
                <padding>
                   <Insets left="15.0" right="5.0" />
                </padding>
             </Label>
-            <DatePicker fx:id="departureDate" GridPane.columnIndex="3" />
-            <DatePicker fx:id="returnDate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <DatePicker fx:id="departureDate" prefHeight="24.0" prefWidth="235.0" GridPane.columnIndex="3" />
+            <DatePicker fx:id="returnDate" prefHeight="24.0" prefWidth="238.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Label text="%label.date.return" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <padding>
                   <Insets left="15.0" right="5.0" />
@@ -64,32 +63,22 @@
                   <Insets left="15.0" right="5.0" />
                </padding>
             </Label>
-            <ComboBox fx:id="driverCbox" prefHeight="24.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="vehicleCbox" minHeight="-Infinity" prefHeight="24.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-            <Label text="%label.time" GridPane.columnIndex="4">
+            <ComboBox fx:id="driverCbox" prefHeight="24.0" prefWidth="265.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="vehicleCbox" minHeight="-Infinity" prefHeight="24.0" prefWidth="260.0" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="24.0" prefWidth="89.0" text="%btn.search" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets />
+                  <Insets left="15.0" />
                </GridPane.margin>
-               <padding>
-                  <Insets left="15.0" right="5.0" />
-               </padding>
-            </Label>
-            <Label text="%label.time" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <padding>
-                  <Insets left="15.0" right="5.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="departureTime" GridPane.columnIndex="5" />
-            <TextField fx:id="returnTime" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            </Button>
          </children>
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </GridPane>
-      <ScrollPane fx:id="listPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+      <ScrollPane fx:id="listPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="tripsContainer" prefHeight="200.0" prefWidth="100.0" />
+         </content></ScrollPane>
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="20.0">
          <children>
             <Button fx:id="addBtn" mnemonicParsing="false" onAction="#add" text="%btn.add" />

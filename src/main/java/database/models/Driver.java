@@ -3,6 +3,8 @@ package database.models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.List;
+
 @DatabaseTable(tableName = "drivers")
 public class Driver implements BaseModel {
 
@@ -15,11 +17,11 @@ public class Driver implements BaseModel {
     @DatabaseField(canBeNull = false)
     private String lastName;
 
-    @DatabaseField(canBeNull = false, foreign = true)
-    private DriveLicense driveLicenses;
+    @DatabaseField(canBeNull = false)
+    private String driveLicenses;
 
-    @DatabaseField(foreign = true)
-    private AdditionalPermission additionalPermissions;
+    @DatabaseField()
+    private String additionalPermissions;
 
     public int getId() {
         return id;
@@ -45,20 +47,19 @@ public class Driver implements BaseModel {
         this.lastName = lastName;
     }
 
-    public DriveLicense getDriveLicenses() {
+    public String getDriveLicenses() {
         return driveLicenses;
     }
 
-    public void setDriveLicenses(DriveLicense driveLicenses) {
+    public void setDriveLicenses(String driveLicenses) {
         this.driveLicenses = driveLicenses;
     }
 
-    public AdditionalPermission getAdditionalPermissions() {
+    public String getAdditionalPermissions() {
         return additionalPermissions;
     }
 
-    public void setAdditionalPermissions(AdditionalPermission additionalPermissions) {
+    public void setAdditionalPermissions(String additionalPermissions) {
         this.additionalPermissions = additionalPermissions;
     }
-
 }

@@ -3,7 +3,7 @@ package database.models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 @DatabaseTable(tableName = "trips")
 public class Trip implements BaseModel {
@@ -18,24 +18,26 @@ public class Trip implements BaseModel {
     private String destination;
 
     @DatabaseField(canBeNull = false)
-    private Timestamp startTime;
+    private Date departureDate;
 
     @DatabaseField(canBeNull = false)
-    private Timestamp returnTime;
+    private Date returnDate;
 
-    @DatabaseField(canBeNull = false, foreign = true)
-    private Vehicle vehicle;
+    @DatabaseField(canBeNull = false)
+    private String vehicle;
 
-    @DatabaseField(canBeNull = false, foreign = true)
-    private Driver driver;
+    @DatabaseField(canBeNull = false)
+    private String driver;
 
     @DatabaseField(canBeNull = false)
     private int passengersAmount;
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
@@ -56,35 +58,35 @@ public class Trip implements BaseModel {
         this.destination = destination;
     }
 
-    public Timestamp getStartTime() {
-        return startTime;
+    public Date getDepartureDate() {
+        return departureDate;
     }
 
-    public void setStartTime(Timestamp startTime) {
-        this.startTime = startTime;
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
     }
 
-    public Timestamp getReturnTime() {
-        return returnTime;
+    public Date getReturnDate() {
+        return returnDate;
     }
 
-    public void setReturnTime(Timestamp returnTime) {
-        this.returnTime = returnTime;
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 
-    public Vehicle getVehicle() {
+    public String getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(Vehicle vehicle) {
+    public void setVehicle(String vehicle) {
         this.vehicle = vehicle;
     }
 
-    public Driver getDriver() {
+    public String getDriver() {
         return driver;
     }
 
-    public void setDriver(Driver driver) {
+    public void setDriver(String driver) {
         this.driver = driver;
     }
 

@@ -2,8 +2,6 @@ package controllers;
 
 import database.dao.VehicleDao;
 import database.models.Vehicle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

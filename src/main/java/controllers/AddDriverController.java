@@ -1,13 +1,15 @@
 package controllers;
 
+import database.dao.DriverDao;
+import database.models.Driver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class AddDriverController {
+
+public class AddDriverController extends Controller{
 
     @FXML
     private ImageView picture;
@@ -22,10 +24,10 @@ public class AddDriverController {
     private TextField lastNameField;
 
     @FXML
-    private TableView<?> licensesTable;
+    private TextField driveLicField;
 
     @FXML
-    private TableView<?> addsPermTable;
+    private TextField addsPerm;
 
     @FXML
     private Button cancelBtn;
@@ -40,7 +42,18 @@ public class AddDriverController {
 
     @FXML
     void save(ActionEvent event) {
+        Driver driver = new Driver();
+        driver.setFirstName(firstNameField.getText());
+        driver.setLastName(lastNameField.getText());
+        driver.setDriveLicenses(driveLicField.getText());
+        driver.setAdditionalPermissions(addsPerm.getText());
 
+        DriverDao driverDao = new DriverDao();
+        try {
+            driverDao.createOrUpdate(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
