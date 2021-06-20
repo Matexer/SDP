@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Klasa nadrzędna dla wszystkich klas Dao. odpowiada za tworzenie zapytań do bazy danych.
+ */
 public abstract class CommonDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonDao.class);
@@ -23,6 +26,13 @@ public abstract class CommonDao {
         this.connectionSource = DBManager.getConnection();
     }
 
+    /**
+     * Metoda tworząca lub aktualizująca w wypadku istnienia rekord w bazie danych.
+     * @param baseModel - obiekt bazy danych.
+     * @param <T>
+     * @param <I>
+     * @throws Exception
+     */
     public <T extends BaseModel, I> void createOrUpdate(BaseModel baseModel) throws Exception {
         Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
         try {
@@ -45,6 +55,13 @@ public abstract class CommonDao {
         }
     }
 
+    /**
+     * Metoda usuwająca rekord z bazy danych.
+     * @param baseModel - obiekt bazy danych.
+     * @param <T>
+     * @param <I>
+     * @throws Exception
+     */
     public <T extends BaseModel, I> void delete(BaseModel baseModel) throws Exception {
         try {
             Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
@@ -79,6 +96,11 @@ public abstract class CommonDao {
         }
     }
 
+    /**
+     * Metoda zwracająca całą zawartość tablicy.
+     * @param cls - klasa obiektu tworzącego tablicę
+     * @throws Exception
+     */
     public <T extends BaseModel, I> List<T> queryForAll(Class<T> cls) throws Exception {
         try {
             Dao<T, I> dao = getDao(cls);

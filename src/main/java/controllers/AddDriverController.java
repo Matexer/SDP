@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 /**
  * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego kierowcy.
  */
-public class AddDriverController extends Controller{
+public class AddDriverController extends Controller {
 
     @FXML
     private TextField firstNameField;
@@ -43,6 +43,7 @@ public class AddDriverController extends Controller{
 
     /**
      * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     *
      * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML

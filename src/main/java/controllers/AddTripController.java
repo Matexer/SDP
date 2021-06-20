@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego przejazdu.
  */
-public class AddTripController extends Controller{
+public class AddTripController extends Controller {
 
     private final List<Vehicle> vehicles = new ArrayList<>();
     private final List<Driver> drivers = new ArrayList<>();
@@ -69,13 +69,13 @@ public class AddTripController extends Controller{
     public void initialize() {
         super.initialize();
         passAmountField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-            if (! isNowFocused) {
+            if (!isNowFocused) {
                 loadAvailableVehicles();
             }
         });
 
         vehicleCbox.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-            if (! isNowFocused) {
+            if (!isNowFocused) {
                 loadAvailableDrivers();
             }
         });
@@ -84,6 +84,7 @@ public class AddTripController extends Controller{
 
     /**
      * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     *
      * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -123,8 +124,7 @@ public class AddTripController extends Controller{
         int passengersNum;
         try {
             passengersNum = Integer.parseInt(passengers);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             passengersNum = -1;
         }
 
@@ -132,12 +132,12 @@ public class AddTripController extends Controller{
             return;
         }
 
-        for (Vehicle vehicle: allVehicles) {
+        for (Vehicle vehicle : allVehicles) {
             addVehicleIfPossible(vehicle, passengersNum);
         }
 
         availableVehiclesNames.clear();
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             availableVehiclesNames.add(vehicle.getName() + " " + vehicle.getRegistrationNumber());
         }
 
@@ -147,7 +147,8 @@ public class AddTripController extends Controller{
 
     /**
      * Metoda odpowiedzialna za dodanie do listy pojazdu jesli spełnia określone kryteria.
-     * @param vehicle - sprawdzany pojazd
+     *
+     * @param vehicle       - sprawdzany pojazd
      * @param passengersNum - wymagana minimalna liczba pasażerów
      */
     private void addVehicleIfPossible(Vehicle vehicle, int passengersNum) {
@@ -181,12 +182,12 @@ public class AddTripController extends Controller{
         Vehicle vehicle = vehicles.get(i);
         String requiredLicense = vehicle.getRequiredDriveLicense();
 
-        for (Driver driver: allDrivers) {
+        for (Driver driver : allDrivers) {
             addDriverIfPossible(driver, requiredLicense);
         }
 
         availableDriversNames.clear();
-        for (Driver driver: drivers) {
+        for (Driver driver : drivers) {
             availableDriversNames.add(driver.getFirstName() + " " + driver.getLastName());
         }
 
@@ -196,13 +197,14 @@ public class AddTripController extends Controller{
 
     /**
      * Metoda odpowiedzialna za dodanie do listy kierowcy jeśli spełnia określone kryteria.
-     * @param driver - sprawdzany kierowca
+     *
+     * @param driver          - sprawdzany kierowca
      * @param requiredLicense - wymagana kategoria prawa jazdy
      */
     private void addDriverIfPossible(Driver driver, String requiredLicense) {
         if (!(driver.getDriveLicenses().contains(requiredLicense))) {
-                return;
-            }
+            return;
+        }
         drivers.add(driver);
     }
 }

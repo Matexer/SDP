@@ -30,7 +30,7 @@ public class Main extends Application {
     public void init() {
         bundle = ResourceBundle.getBundle("bundles.labels");
         appTitle = bundle.getString("application.name") + " v" + bundle.getString("application.version");
-        DBManager.createConnection("jdbc:h2:./database");
+        DBManager.createConnection("jdbc:h2:./SDK_DB");
         DBManager.createTablesIfNotExist();
     }
 

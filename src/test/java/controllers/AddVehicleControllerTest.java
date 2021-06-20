@@ -4,14 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddDriverControllerTest {
+class AddVehicleControllerTest {
 
     @Test
-    void saveNewDriverWithValidData() {
+    void saveNewVehicleWithValidData() {
     }
 
     @Test
-    void saveNewDriverWithUncompletedData() {
+    void saveNewVehicleWithUncompletedData() {
     }
-
 }

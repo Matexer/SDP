@@ -14,7 +14,7 @@ import java.sql.Date;
 /**
  * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem dodawania nowego pojazdu.
  */
-public class AddVehicleController extends Controller{
+public class AddVehicleController extends Controller {
 
     @FXML
     private TextField nameField;
@@ -45,6 +45,7 @@ public class AddVehicleController extends Controller{
 
     /**
      * Metoda wykonywana po naciśnięciu przycisku Anuluj.
+     *
      * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -54,6 +55,7 @@ public class AddVehicleController extends Controller{
 
     /**
      * Metoda odpowiadająca za zapis wprowadzonych danych w bazie.
+     *
      * @param event - obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML

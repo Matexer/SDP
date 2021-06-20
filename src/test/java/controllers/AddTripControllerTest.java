@@ -7,14 +7,34 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddTripControllerTest {
 
     @Test
-    void cancel() {
+    void saveNewTripWithValidData() {
     }
 
     @Test
-    void initialize() {
+    void saveNewTripWithUncompletedData() {
     }
 
     @Test
-    void save() {
+    void loadAvailableVehicles() {
+    }
+
+    @Test
+    void addVehicleIfPossibleWhenNot() {
+    }
+
+    @Test
+    void addVehicleIfPossibleWhenYes() {
+    }
+
+    @Test
+    void loadAvailableDrivers() {
+    }
+
+    @Test
+    void addDriverIfPossibleWhenNot() {
+    }
+
+    @Test
+    void addDriverIfPossibleWhenYes() {
     }
 }

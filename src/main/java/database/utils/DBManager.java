@@ -11,11 +11,18 @@ import database.models.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * Klasa odpowiedzialna za komunikację z baza danych.
+ */
 public abstract class DBManager {
 
     private static ConnectionSource connectionSource;
     private static final Logger logger = LoggerFactory.getLogger(DBManager.class);
 
+    /**
+     * Utworzenie połączenia z baza danych
+     * @param databaseUrl ściażka do bazy danych
+     */
     public static void createConnection(String databaseUrl) {
         try {
             connectionSource = new JdbcConnectionSource(databaseUrl);
@@ -29,6 +36,10 @@ public abstract class DBManager {
         return connectionSource;
     }
 
+    /**
+     * Metoda tworząca tabele w bazie danych w przypadku ich nieistnienia,
+     * czyli podczas generowania nowej bazy danych.
+     */
     public static void createTablesIfNotExist() {
         Class[] clsList = {Driver.class, Trip.class, Vehicle.class};
         for (Class tableClass: clsList) {

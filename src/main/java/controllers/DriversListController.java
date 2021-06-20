@@ -1,19 +1,13 @@
 package controllers;
 
 import database.dao.DriverDao;
-import database.dao.VehicleDao;
 import database.models.Driver;
-import database.models.Vehicle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -24,7 +18,7 @@ import java.util.List;
 /**
  * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem listy kierowców.
  */
-public class DriversListController extends Controller{
+public class DriversListController extends Controller {
 
     List<Driver> drivers = new ArrayList<>();
 
@@ -57,16 +51,18 @@ public class DriversListController extends Controller{
 
     /**
      * Metoda odpowiedzialna za wyświetlenie przefiltorwanej listy kierowców.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
-    void search(ActionEvent event){
+    void search(ActionEvent event) {
         loadDrivers();
         loadVisibleList();
     }
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Dodaj. Wyświetla okno dodawania kierowcy.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -76,6 +72,7 @@ public class DriversListController extends Controller{
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Edytuj.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -85,6 +82,7 @@ public class DriversListController extends Controller{
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Usuń.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -117,23 +115,24 @@ public class DriversListController extends Controller{
         String lastName = lastNameField.getCharacters().toString();
         String license = licenseCbox.getValue();
         String addsPerm = addsPermissionsField.getCharacters().toString();
-        
+
         if (addDrivers == null) {
             return;
         }
 
-        for (Driver driver: addDrivers) {
+        for (Driver driver : addDrivers) {
             addIfInCategory(driver, firstName, lastName, license, addsPerm);
         }
     }
 
     /**
      * Metoda odpowiedzialna za dodanie do listy kierowcy jeśli spełnia określone kryteria.
-     * @param driver - sprawdzany obiekt klasy Driver
+     *
+     * @param driver    - sprawdzany obiekt klasy Driver
      * @param firstName - imię kierowcy
-     * @param lastName - nazwisko kierowcy
-     * @param license - wymagane uprawnienia do kierowania pojazdami
-     * @param addsPerm - wymagane uprawnienia dodatkowe
+     * @param lastName  - nazwisko kierowcy
+     * @param license   - wymagane uprawnienia do kierowania pojazdami
+     * @param addsPerm  - wymagane uprawnienia dodatkowe
      */
     private void addIfInCategory(Driver driver, String firstName,
                                  String lastName, String license, String addsPerm) {
@@ -163,9 +162,9 @@ public class DriversListController extends Controller{
     /**
      * Metoda odpowiedzialna za wyświetlenie listy przefiltrowanych kierowców.
      */
-    public void loadVisibleList(){
+    public void loadVisibleList() {
         driversContainer.getChildren().clear();
-        for (Driver driver: drivers) {
+        for (Driver driver : drivers) {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/DriverListField.fxml"));
             loader.setResources(bundle);
             GridPane driverField = null;

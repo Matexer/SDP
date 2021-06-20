@@ -7,9 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,7 @@ import java.util.List;
 /**
  * Kontroler odpowiedzialny za obsługę interakcji użytkownika z oknem listy pojazdów.
  */
-public class VehiclesListController extends Controller{
+public class VehiclesListController extends Controller {
 
     List<Vehicle> vehicles = new ArrayList<>();
 
@@ -51,6 +55,7 @@ public class VehiclesListController extends Controller{
 
     /**
      * Metoda odpowiedzialna za wyświetlenie przefiltrowanej listy przejazdów.
+     *
      * @param event -obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -61,6 +66,7 @@ public class VehiclesListController extends Controller{
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Dodaj. Wyświetla okno dodawania pojazdu.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -70,6 +76,7 @@ public class VehiclesListController extends Controller{
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Edytuj.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -79,6 +86,7 @@ public class VehiclesListController extends Controller{
 
     /**
      * Metoda obsługująca naciśnięcie przycisku Usuń.
+     *
      * @param event obiekt klasy ActionEvent zawierający informacje o źródle wywołania metody.
      */
     @FXML
@@ -116,8 +124,7 @@ public class VehiclesListController extends Controller{
         int passengersNum;
         try {
             passengersNum = Integer.parseInt(passengers);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             passengersNum = -1;
         }
 
@@ -125,17 +132,18 @@ public class VehiclesListController extends Controller{
             return;
         }
 
-        for (Vehicle vehicle: allVehicles) {
+        for (Vehicle vehicle : allVehicles) {
             addIfInCategory(vehicle, name, type, license, passengersNum);
         }
     }
 
     /**
      * Metoda filtrująca pojazdy. Uzupełnia listę pojazdów jeżeli pojazd ma określone parametry.
-     * @param vehicle - sprawdzany pojazd
-     * @param name - nazwa pojazdu
-     * @param type - typ pojazdu
-     * @param license - wymagana kat. prawa jazdy
+     *
+     * @param vehicle       - sprawdzany pojazd
+     * @param name          - nazwa pojazdu
+     * @param type          - typ pojazdu
+     * @param license       - wymagana kat. prawa jazdy
      * @param passengersNum - możliwa liczba pasażerów
      */
     private void addIfInCategory(Vehicle vehicle, String name, String type,
@@ -166,9 +174,9 @@ public class VehiclesListController extends Controller{
     /**
      * Metoda odpowiadająca za pokazanie listy przefiltrowanych pojazdów.
      */
-    private void loadVisibleList(){
+    private void loadVisibleList() {
         vehiclesContainer.getChildren().clear();
-        for (Vehicle vehicle: vehicles) {
+        for (Vehicle vehicle : vehicles) {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/VehicleListField.fxml"));
             loader.setResources(bundle);
             GridPane vehicleField = null;
@@ -215,5 +223,5 @@ public class VehiclesListController extends Controller{
             vehiclesContainer.getChildren().add(vehicleField);
         }
 
-        }
+    }
 }
