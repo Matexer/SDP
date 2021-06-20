@@ -140,18 +140,22 @@ public class VehiclesListController extends Controller{
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxmls/VehicleListField.fxml"));
             loader.setResources(bundle);
             GridPane vehicleField = loader.load();
+
             ObservableList<Node> children = vehicleField.getChildren();
             for (Node child : children) {
                 String id = child.getId();
                 String label;
+                String label2;
 
                 if (id != null) {
                     switch (id) {
                         case "vehicleName":
-                            ((Label) child).setText(vehicle.getName());
-                        case "passengers":
-                            label = "L. pasażerów: " + vehicle.getPassengersCapacity();
+                            label = vehicle.getName();
                             ((Label) child).setText(label);
+                            break;
+                        case "passengers":
+                            label2 = "L. pasażerów: " + vehicle.getPassengersCapacity();
+                            ((Label) child).setText(label2);
                             break;
                         case "license":
                             label = "Kat. " + vehicle.getRequiredDriveLicense();
@@ -175,8 +179,4 @@ public class VehiclesListController extends Controller{
         }
 
         }
-
-    private void addToVisibleList() {
-
-    }
 }

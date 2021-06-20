@@ -8,10 +8,9 @@
 
 <GridPane prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="180.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="64.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="167.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="172.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="173.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="160.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="264.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,14 +22,14 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="passengers" text="7 osób" GridPane.columnIndex="1" />
+      <Label fx:id="passengers" text="7 osób" GridPane.rowIndex="1" />
       <Label fx:id="license" text="Kat. B" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label fx:id="regNum" text="CWL 43222" GridPane.columnIndex="2">
+      <Label fx:id="regNum" text="CWL 43222" GridPane.columnIndex="1">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="insuranceDate" text="OC do 12.05.2010" GridPane.columnIndex="3" />
-      <Label fx:id="techRevDate" text="Ubez. do 17.06.2011" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Label fx:id="insuranceDate" prefHeight="16.0" prefWidth="231.0" text="OC do 12.05.2010" GridPane.columnIndex="2" />
+      <Label fx:id="techRevDate" prefHeight="16.0" prefWidth="223.0" text="Ubez. do 17.06.2011" GridPane.columnIndex="2" GridPane.rowIndex="1" />
    </children>
 </GridPane>
