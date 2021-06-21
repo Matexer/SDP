@@ -69,7 +69,7 @@ public class TripsListController extends Controller {
     public void initialize() {
         allDrivers = loadAllDrivers();
         allVehicles = loadAllVehicles();
-        setCboxes();
+        setCboxes(allVehicles, allDrivers);
     }
 
     /**
@@ -120,18 +120,22 @@ public class TripsListController extends Controller {
     /**
      * Metoda odpowiedzialna za załadowanie treści Comboboxów.
      */
-    private void setCboxes() {
+    private void setCboxes(List<Vehicle> allVehicles, List<Driver> allDrivers) {
         ObservableList<String> vehicleNames = FXCollections.observableArrayList();
-        for (Vehicle vehicle : allVehicles) {
-            vehicleNames.add(vehicle.getName() + " " + vehicle.getRegistrationNumber());
+        if (allVehicles != null) {
+            for (Vehicle vehicle : allVehicles) {
+                vehicleNames.add(vehicle.getName() + " " + vehicle.getRegistrationNumber());
+            }
+            vehicleCbox.setItems(vehicleNames);
         }
-        vehicleCbox.setItems(vehicleNames);
 
-        ObservableList<String> driverNames = FXCollections.observableArrayList();
-        for (Driver driver : allDrivers) {
-            driverNames.add(driver.getFirstName() + " " + driver.getLastName());
+        if (allDrivers != null) {
+            ObservableList<String> driverNames = FXCollections.observableArrayList();
+            for (Driver driver : allDrivers) {
+                driverNames.add(driver.getFirstName() + " " + driver.getLastName());
+            }
+            driverCbox.setItems(driverNames);
         }
-        driverCbox.setItems(driverNames);
     }
 
 
