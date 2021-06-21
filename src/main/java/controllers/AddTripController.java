@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -90,19 +87,25 @@ public class AddTripController extends Controller {
     @FXML
     void save(ActionEvent event) {
         Trip trip = new Trip();
-        trip.setFrom(fromField.getText());
-        trip.setDepartureDate(Date.valueOf(departureDate.getValue()));
-        trip.setPassengersAmount(Integer.parseInt(passAmountField.getCharacters().toString()));
-        trip.setVehicle(vehicleCbox.getValue());
-        trip.setDriver(driverCbox.getValue());
-        trip.setDestination(toField.getText());
-        trip.setReturnDate(Date.valueOf(returnDate.getValue()));
-
         TripDao tripDao = new TripDao();
+
         try {
+            trip.setFrom(fromField.getText());
+            trip.setDepartureDate(Date.valueOf(departureDate.getValue()));
+            trip.setPassengersAmount(Integer.parseInt(passAmountField.getCharacters().toString()));
+            trip.setVehicle(vehicleCbox.getValue());
+            trip.setDriver(driverCbox.getValue());
+            trip.setDestination(toField.getText());
+            trip.setReturnDate(Date.valueOf(returnDate.getValue()));
+            if (!trip.isValid()) {
+                showErrorSaveToDBAlert();
+                return;
+            }
             tripDao.createOrUpdate(trip);
+            showSuccessfulSaveToDBAlert();
         } catch (Exception e) {
             e.printStackTrace();
+            showErrorSaveToDBAlert();
         }
     }
 

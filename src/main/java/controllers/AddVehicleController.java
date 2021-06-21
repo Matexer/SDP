@@ -61,19 +61,24 @@ public class AddVehicleController extends Controller {
     @FXML
     void save(ActionEvent event) {
         Vehicle vehicle = new Vehicle();
-        vehicle.setName(nameField.getCharacters().toString());
-        vehicle.setVehicleType(typeCbox.getValue());
-        vehicle.setRegistrationNumber(registrationNumField.getCharacters().toString());
-        vehicle.setRequiredDriveLicense(licenseCbox.getValue());
-        vehicle.setPassengersCapacity(Integer.parseInt((passNum.getCharacters().toString())));
-        vehicle.setInsuranceDate(Date.valueOf(insuranceDate.getValue()));
-        vehicle.setTechnicalReviewDate(Date.valueOf(techReviewDate.getValue()));
-
         VehicleDao vehicleDao = new VehicleDao();
         try {
+            vehicle.setName(nameField.getCharacters().toString());
+            vehicle.setVehicleType(typeCbox.getValue());
+            vehicle.setRegistrationNumber(registrationNumField.getCharacters().toString());
+            vehicle.setRequiredDriveLicense(licenseCbox.getValue());
+            vehicle.setPassengersCapacity(Integer.parseInt((passNum.getCharacters().toString())));
+            vehicle.setInsuranceDate(Date.valueOf(insuranceDate.getValue()));
+            vehicle.setTechnicalReviewDate(Date.valueOf(techReviewDate.getValue()));
+            if (!vehicle.isValid()) {
+                showErrorSaveToDBAlert();
+                return;
+            }
             vehicleDao.createOrUpdate(vehicle);
+            showSuccessfulSaveToDBAlert();
         } catch (Exception e) {
             e.printStackTrace();
+            showErrorSaveToDBAlert();
         }
     }
 

@@ -97,4 +97,14 @@ public class Trip implements BaseModel {
     public void setPassengersAmount(int passengersAmount) {
         this.passengersAmount = passengersAmount;
     }
+
+    public boolean isValid() {
+        if (this.getFrom().length() < 1) {
+            return false;
+        }
+        if (this.getDestination().length() < 1) {
+            return false;
+        }
+        return true;
+    }
 }

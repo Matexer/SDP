@@ -95,4 +95,14 @@ public class Vehicle implements BaseModel {
     public void setTechnicalReviewDate(Date technicalReviewDate) {
         this.technicalReviewDate = technicalReviewDate;
     }
+
+    public boolean isValid() {
+        if (this.getName().length() < 1) {
+            return false;
+        }
+        if (this.getRegistrationNumber().length() < 1) {
+            return false;
+        }
+        return true;
+    }
 }

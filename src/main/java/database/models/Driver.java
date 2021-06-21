@@ -62,4 +62,17 @@ public class Driver implements BaseModel {
     public void setAdditionalPermissions(String additionalPermissions) {
         this.additionalPermissions = additionalPermissions;
     }
+
+    public boolean isValid() {
+        if (this.getFirstName().length() < 1) {
+            return false;
+        }
+        if (this.getLastName().length() < 1) {
+            return false;
+        }
+        if (this.getDriveLicenses().length() < 1) {
+            return false;
+        }
+        return true;
+    }
 }

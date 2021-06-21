@@ -4,6 +4,7 @@ import database.dao.DriverDao;
 import database.models.Driver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -49,16 +50,21 @@ public class AddDriverController extends Controller {
     @FXML
     void save(ActionEvent event) {
         Driver driver = new Driver();
-        driver.setFirstName(firstNameField.getText());
-        driver.setLastName(lastNameField.getText());
-        driver.setDriveLicenses(driveLicField.getText());
-        driver.setAdditionalPermissions(addsPerm.getText());
-
         DriverDao driverDao = new DriverDao();
         try {
+            driver.setFirstName(firstNameField.getText());
+            driver.setLastName(lastNameField.getText());
+            driver.setDriveLicenses(driveLicField.getText());
+            driver.setAdditionalPermissions(addsPerm.getText());
+            if (!driver.isValid()) {
+                showErrorSaveToDBAlert();
+                return;
+            }
             driverDao.createOrUpdate(driver);
+            showSuccessfulSaveToDBAlert();
         } catch (Exception e) {
             e.printStackTrace();
+            showErrorSaveToDBAlert();
         }
     }
 

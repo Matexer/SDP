@@ -23,7 +23,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ImageView fx:id="picture" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="setPictureBtn" mnemonicParsing="false" onAction="#setPicture" text="%btn.setPicture" />
+                              <Button fx:id="setPictureBtn" mnemonicParsing="false" text="%btn.setPicture" />
                            </children>
                         </VBox>
                         <GridPane>

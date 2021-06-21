@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -68,6 +69,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert window != null;
         Scene scene = new Scene(window);
         Stage stage = new Stage();
         stage.setTitle(title);
@@ -79,9 +81,21 @@ public class Controller {
      * Metoda wykonywana automatycznie zaraz po konstruktorze. Służy inicjalizacji danych.
      */
     public void initialize() {
-        vehicleTypes.addAll("osobowy", "bus");
-        licenseTypes.addAll("A", "B", "C", "D", "E");
+        vehicleTypes.addAll("osobowy", "bus", "inżynieryjny", "ciężarowy");
+        licenseTypes.addAll("A", "A1","B", "B1", "C", "C1", "D", "D1", "E", "E1");
         bundle = ResourceBundle.getBundle("bundles.labels");
+    }
+
+    public void showSuccessfulSaveToDBAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Dodano rekord do bazy danych.");
+        alert.showAndWait();
+    }
+
+    public void showErrorSaveToDBAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Nie udało się zapisać rekordu w bazie danych.");
+        alert.showAndWait();
     }
 
 }
