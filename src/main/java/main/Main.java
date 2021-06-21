@@ -4,6 +4,7 @@ import database.utils.DBManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
  */
 public class Main extends Application {
 
+    boolean connectionToDBExists;
     private String appTitle;
     private ResourceBundle bundle;
 
@@ -32,6 +34,7 @@ public class Main extends Application {
         appTitle = bundle.getString("application.name") + " v" + bundle.getString("application.version");
         DBManager.createConnection("jdbc:h2:./SDK_DB");
         DBManager.createTablesIfNotExist();
+        connectionToDBExists = DBManager.connectionExists();
     }
 
     /**
@@ -48,6 +51,11 @@ public class Main extends Application {
         primaryStage.setTitle(appTitle);
         primaryStage.setScene(scene);
         primaryStage.show();
+        if (!connectionToDBExists) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Brak połączenia z bazą danych");
+            alert.showAndWait();
+        }
     }
 
     /**

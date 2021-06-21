@@ -62,4 +62,11 @@ public abstract class DBManager {
         }
     }
 
+    public static boolean connectionExists() {
+        if (connectionSource != null) {
+            return true;
+        }
+        return false;
+    }
+
 }
